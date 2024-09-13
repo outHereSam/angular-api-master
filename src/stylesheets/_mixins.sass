@@ -1,0 +1,9 @@
+
+@mixin flex($flex-direction: 'row', $gap: 0, $horizontal-spacing: true)
+    display: flex
+    gap: $gap
+
+    @if $horizontal-spacing
+        justify-content: space-between
+        align-items: center
+    

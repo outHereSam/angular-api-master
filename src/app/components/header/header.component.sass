@@ -1,0 +1,28 @@
+@use '../../../styles'
+@use '../../../stylesheets/_variables' as variables
+@use '../../../stylesheets/_mixins' as mixins
+@use '../../../stylesheets/_functions' as functions
+
+header
+    margin: 60px 0 0 0
+    @include mixins.flex($flex-direction: 'row', $gap: 0, $horizontal-spacing: true)
+
+    .title
+        font-size: functions.px-to-rem(20)
+        color: variables.$text-main
+
+    .new
+        font-size: functions.px-to-rem(14)
+        border: none
+        background-color: variables.$purple-accent
+        color: white
+        @include mixins.flex($flex-direction: 'row', $gap: 5px, $horizontal-spacing: true)
+        padding: 8px 15px
+        border-radius: variables.$round-border
+        cursor: pointer
+        transition: 0.2s ease-in
+
+        &:hover
+            background-color: variables.$purple-hover
+        
+    
