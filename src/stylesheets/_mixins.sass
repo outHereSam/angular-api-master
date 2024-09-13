@@ -3,6 +3,9 @@
     display: flex
     gap: $gap
 
+    @if $flex-direction == 'column'
+        flex-direction: column
+
     @if $horizontal-spacing
         justify-content: space-between
         align-items: center

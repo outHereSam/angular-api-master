@@ -1,0 +1,53 @@
+@use '../../../styles'
+@use '../../../stylesheets/_variables' as variables
+@use '../../../stylesheets/_functions' as functions
+@use '../../../stylesheets/_mixins' as mixins
+
+.card
+    // border: solid 1px pink
+    background-color: white
+    box-shadow: variables.$box-shadow
+    padding: 30px
+    border-radius: variables.$card-border
+    cursor: pointer
+
+    &:hover
+        background-color: variables.$card-hover
+
+    .content
+        margin: 0 0 20px 0
+
+        .title
+            color: variables.$text-main
+            font-weight: 500
+            text-transform: capitalize
+            margin: 0 0 20px 0
+
+        .post
+            color: variables.$text-secondary
+            line-height: 1.4
+
+    .controls
+        @include mixins.flex($flex-direction: 'row', $gap: 20px, $horizontal-spacing: false)
+
+        .comments
+            @include mixins.flex($flex-direction: 'row', $gap: 8px, $horizontal-spacing: true)
+            background-color: variables.$gray-light
+            padding: 8px 12px
+            border-radius: variables.$round-border
+
+        .delete
+            @include mixins.flex($flex-direction: 'row', $gap: 8px, $horizontal-spacing: true)
+            border: none
+            background-color: variables.$gray-light
+            color: variables.$red
+            padding: 8px 12px
+            border-radius: variables.$round-border
+            cursor: pointer
+            transition: 0.2s ease-in
+
+            &:hover
+                background-color: variables.$red-hover
+
+
+        

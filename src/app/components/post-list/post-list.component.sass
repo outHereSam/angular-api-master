@@ -1,0 +1,6 @@
+@use '../../../stylesheets/_functions' as functions
+@use '../../../stylesheets/_mixins' as mixins
+
+.post-list
+    @include mixins.flex($flex-direction: 'column', $gap: 20px, $horizontal-spacing: false)
+    
