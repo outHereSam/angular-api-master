@@ -22,7 +22,7 @@
           fill="#6B6672"
         />
       </svg>
-      <p class="comment-count">6</p>
+      <p class="comment-count">{{ (comments$ | async)?.length }}</p>
     </div>
 
     <button class="delete">
