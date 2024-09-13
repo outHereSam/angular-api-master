@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+@use './stylesheets/_base' as base
+@use './stylesheets/_variables' as variables
+@use './stylesheets/_mixins' as mixins
+
+body
+    background-color: variables.$bg-color
+    
+body, button
+    font: variables.$font-stack
