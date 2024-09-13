@@ -1,1 +1,5 @@
-<p>post-list works!</p>
+<div class="post-list">
+  @for (post of posts$ | async; track post.id) {
+  <app-post-card [post]="post" />
+  }
+</div>
