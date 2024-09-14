@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable, switchMap } from 'rxjs';
 import { Post } from '../interfaces/IPost';
 import { Comment } from '../interfaces/IComment';
 
@@ -15,7 +15,19 @@ export class ApiService {
     return this.http.get<Post[]>(this.apiUrl);
   }
 
-  getCommentsByUserId(id: number): Observable<Comment[]> {
+  getCommentsByPostId(id: number): Observable<Comment[]> {
     return this.http.get<Comment[]>(`${this.apiUrl}/${id}/comments`);
+  }
+
+  getPostById(id: string | null) {
+    return this.http
+      .get(`${this.apiUrl}/${id}`)
+      .pipe(
+        switchMap((post) =>
+          this.getCommentsByPostId(Number(id)).pipe(
+            map((comments) => ({ ...post, comments }))
+          )
+        )
+      );
   }
 }

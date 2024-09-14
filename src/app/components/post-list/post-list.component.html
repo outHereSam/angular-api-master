@@ -1,5 +1,7 @@
 <div class="post-list">
   @for (post of posts$ | async; track post.id) {
-  <app-post-card [post]="post" />
+  <div [routerLink]="['/posts', post.id]">
+    <app-post-card [post]="post" />
+  </div>
   }
 </div>

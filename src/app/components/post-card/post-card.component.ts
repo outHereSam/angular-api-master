@@ -23,6 +23,6 @@ export class PostCardComponent {
   comments$: Observable<Comment[]>;
 
   constructor(private apiService: ApiService) {
-    this.comments$ = this.apiService.getCommentsByUserId(this.post.userId);
+    this.comments$ = this.apiService.getCommentsByPostId(this.post.userId);
   }
 }
