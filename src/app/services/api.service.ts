@@ -30,4 +30,8 @@ export class ApiService {
         )
       );
   }
+
+  deletePost(id: number) {
+    return this.http.delete(`${this.apiUrl}/${id}`);
+  }
 }

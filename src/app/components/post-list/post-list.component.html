@@ -6,7 +6,7 @@
   } @if (!(loading$ | async) && !(error$ | async)) { @for (post of posts$ |
   async; track post.id) {
   <div [routerLink]="['/posts', post.id]">
-    <app-post-card [post]="post" />
+    <app-post-card [postId]="post.id" />
   </div>
   } }
 </div>

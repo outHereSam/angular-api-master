@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { Post } from '../../interfaces/IPost';
-import { ApiService } from '../../services/api.service';
 import { Observable } from 'rxjs';
-import { Comment } from '../../interfaces/IComment';
 import { AsyncPipe } from '@angular/common';
+import { Store } from '@ngrx/store';
+import { selectPostById } from '../../state/posts/posts.selectors';
 
 @Component({
   selector: 'app-post-card',
@@ -13,16 +13,17 @@ import { AsyncPipe } from '@angular/common';
   styleUrl: './post-card.component.sass',
 })
 export class PostCardComponent {
-  @Input() post: Post = {
-    userId: 1,
-    id: 1,
-    title: '',
-    body: '',
-  };
-  commentCount: number = 0;
-  comments$: Observable<Comment[]>;
+  @Input() postId: number = 0;
+  commentCount: number | undefined = 0;
+  post$: Observable<Post | undefined>;
 
-  constructor(private apiService: ApiService) {
-    this.comments$ = this.apiService.getCommentsByPostId(this.post.userId);
+  constructor(private store: Store) {
+    this.post$ = this.store.select(selectPostById(this.postId));
   }
+
+  ngOnInit() {
+    this.post$ = this.store.select(selectPostById(this.postId));
+  }
+
+  deletePost(id: number) {}
 }
