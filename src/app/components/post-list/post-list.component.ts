@@ -3,7 +3,7 @@ import { ApiService } from '../../services/api.service';
 import { Observable } from 'rxjs';
 import { Post } from '../../interfaces/IPost';
 import { AsyncPipe } from '@angular/common';
-import { PostCardComponent } from '../../components/post-card/post-card.component';
+import { PostCardComponent } from '../post-card/post-card.component';
 
 @Component({
   selector: 'app-post-list',

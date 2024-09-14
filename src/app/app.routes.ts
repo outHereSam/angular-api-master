@@ -4,9 +4,7 @@ export const routes: Routes = [
   {
     path: '',
     loadComponent: () =>
-      import('./pages/post-list/post-list.component').then(
-        (m) => m.PostListComponent
-      ),
+      import('./pages/home/home.component').then((m) => m.HomeComponent),
   },
   {
     path: 'posts/:id',
