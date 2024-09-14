@@ -17,9 +17,11 @@ export class PostEffects {
     this.actions$.pipe(
       ofType(PostActions.loadPosts),
       mergeMap(() => {
-        return this.apiService
-          .getPosts()
-          .pipe(map((posts) => PostActions.loadPostsSuccess({ posts })));
+        return this.apiService.getPosts().pipe(
+          map((posts) => {
+            return PostActions.loadPostsSuccess({ posts });
+          })
+        );
       }),
       catchError((error) =>
         of(PostActions.loadPostsFailure({ error: error.message }))

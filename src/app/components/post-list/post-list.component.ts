@@ -1,10 +1,16 @@
 import { Component } from '@angular/core';
-import { ApiService } from '../../services/api.service';
 import { Observable } from 'rxjs';
 import { Post } from '../../interfaces/IPost';
 import { AsyncPipe } from '@angular/common';
 import { PostCardComponent } from '../post-card/post-card.component';
 import { RouterLink } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../state/app.state';
+import {
+  selectAllPosts,
+  selectPostError,
+  selectPostLoading,
+} from '../../state/posts/posts.selectors';
 
 @Component({
   selector: 'app-post-list',
@@ -15,8 +21,12 @@ import { RouterLink } from '@angular/router';
 })
 export class PostListComponent {
   posts$: Observable<Post[]>;
+  loading$: Observable<boolean>;
+  error$: Observable<string | null>;
 
-  constructor(private apiService: ApiService) {
-    this.posts$ = this.apiService.getPosts();
+  constructor(private store: Store<AppState>) {
+    this.posts$ = this.store.select(selectAllPosts);
+    this.loading$ = this.store.select(selectPostLoading);
+    this.error$ = this.store.select(selectPostError);
   }
 }

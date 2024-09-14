@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { PostListComponent } from './components/post-list/post-list.component';
+import { Store } from '@ngrx/store';
+import { loadPosts } from './state/posts/posts.actions';
 
 @Component({
   selector: 'app-root',
@@ -12,4 +14,10 @@ import { PostListComponent } from './components/post-list/post-list.component';
 })
 export class AppComponent {
   title = 'angular-api-master';
+
+  constructor(private store: Store) {}
+
+  ngOnInit() {
+    this.store.dispatch(loadPosts());
+  }
 }

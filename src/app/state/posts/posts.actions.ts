@@ -2,16 +2,16 @@ import { createAction, props } from '@ngrx/store';
 import { Post } from '../../interfaces/IPost';
 
 // Load Actions
-export const loadPosts = createAction('[Post] Load Posts');
+export const loadPosts = createAction('[Post List] Load Posts');
 export const loadPostsSuccess = createAction(
-  '[Post] Load Posts Success',
+  '[Post List] Load Posts Success',
   props<{ posts: Post[] }>()
 );
 export const loadPostsFailure = createAction(
-  '[Post] Load Posts Failure',
+  '[Post List] Load Posts Failure',
   props<{ error: string }>()
 );
-export const addPostSuccess = createAction('[Post] Add Post Success');
+export const addPostSuccess = createAction('[Post List] Add Post Success');
 
 // Add post action
 export const addPost = createAction('[Post] Add Post', props<{ post: Post }>());

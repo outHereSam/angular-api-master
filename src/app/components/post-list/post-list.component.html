@@ -1,7 +1,12 @@
 <div class="post-list">
-  @for (post of posts$ | async; track post.id) {
+  @if (loading$ | async) {
+  <div class="loading">Loading...</div>
+  } @if (error$ | async) {
+  <div class="error">{{ error$ | async }}</div>
+  } @if (!(loading$ | async) && !(error$ | async)) { @for (post of posts$ |
+  async; track post.id) {
   <div [routerLink]="['/posts', post.id]">
     <app-post-card [post]="post" />
   </div>
-  }
+  } }
 </div>
