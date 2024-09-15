@@ -8,6 +8,7 @@ import { postReducer } from './state/posts/posts.reducer';
 import { PostEffects } from './state/posts/posts.effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { loggingInterceptor } from './interceptors/logging.interceptor';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -20,5 +21,6 @@ export const appConfig: ApplicationConfig = {
     }),
     provideEffects(PostEffects),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
+    NgxPaginationModule,
   ],
 };

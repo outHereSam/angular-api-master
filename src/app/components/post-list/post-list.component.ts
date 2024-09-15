@@ -12,11 +12,18 @@ import {
   selectPostLoading,
 } from '../../state/posts/posts.selectors';
 import { HeaderComponent } from '../header/header.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-post-list',
   standalone: true,
-  imports: [AsyncPipe, RouterLink, PostCardComponent, HeaderComponent],
+  imports: [
+    AsyncPipe,
+    RouterLink,
+    PostCardComponent,
+    HeaderComponent,
+    NgxPaginationModule,
+  ],
   templateUrl: './post-list.component.html',
   styleUrl: './post-list.component.sass',
 })
@@ -24,6 +31,7 @@ export class PostListComponent {
   posts$: Observable<Post[]>;
   loading$: Observable<boolean>;
   error$: Observable<string | null>;
+  p: number = 1;
 
   constructor(private store: Store<AppState>) {
     this.posts$ = this.store.select(selectAllPosts);
