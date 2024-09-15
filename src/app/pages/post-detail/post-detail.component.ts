@@ -7,6 +7,7 @@ import { PostCardComponent } from '../../components/post-card/post-card.componen
 import { AsyncPipe } from '@angular/common';
 import { CommentsComponent } from '../../components/comments/comments.component';
 import { OptionsComponent } from '../../components/options/options.component';
+import { FormModalComponent } from '../../components/form-modal/form-modal.component';
 
 @Component({
   selector: 'app-post-detail',
@@ -17,6 +18,7 @@ import { OptionsComponent } from '../../components/options/options.component';
     AsyncPipe,
     CommentsComponent,
     OptionsComponent,
+    FormModalComponent,
   ],
   templateUrl: './post-detail.component.html',
   styleUrl: './post-detail.component.sass',

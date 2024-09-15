@@ -1,9 +1,17 @@
-<div class="overlay"></div>
+<div
+  class="overlay"
+  [style]="{ display: modalService.isOpened ? 'block' : 'none' }"
+  (click)="modalService.closeModal()"
+></div>
 
-<div class="form-modal">
+<div
+  class="form-modal"
+  [style]="{ display: modalService.isOpened ? 'block' : 'none' }"
+>
   <div class="top">
-    <h1>Create Post</h1>
-    <button class="close">
+    <h1>{{ post ? "Edit Post" : "Create Post" }}</h1>
+
+    <button class="close" (click)="modalService.closeModal()">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -19,13 +27,21 @@
   </div>
 
   <form [formGroup]="postForm" (ngSubmit)="handleSubmit()">
-    <input type="text" placeholder="Title" formControlName="title" />
+    <input
+      type="text"
+      placeholder="Title"
+      formControlName="title"
+      [value]="post ? post.title : ''"
+    />
     <textarea
       rows="6"
       cols="60"
       placeholder="Create post..."
       formControlName="body"
+      [value]="post ? post.body : ''"
     ></textarea>
-    <button class="submit" type="submit">Post</button>
+    <button class="submit" type="submit" [disabled]="postForm.invalid">
+      {{ post ? "Update Post" : "Post" }}
+    </button>
   </form>
 </div>
