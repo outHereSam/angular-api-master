@@ -7,6 +7,9 @@ import {
 } from '@angular/forms';
 import { ModalService } from '../../services/modal.service';
 import { Post } from '../../interfaces/IPost';
+import { ApiService } from '../../services/api.service';
+import { Store } from '@ngrx/store';
+import { addPost } from '../../state/posts/posts.actions';
 
 @Component({
   selector: 'app-form-modal',
@@ -17,11 +20,13 @@ import { Post } from '../../interfaces/IPost';
 })
 export class FormModalComponent {
   modalService: ModalService = inject(ModalService);
+  apiService: ApiService = inject(ApiService);
+
   @Input() post: Post | null = null;
 
   postForm: FormGroup;
 
-  constructor() {
+  constructor(private store: Store) {
     this.postForm = new FormGroup({});
   }
 
@@ -43,8 +48,13 @@ export class FormModalComponent {
   }
 
   handleSubmit() {
-    console.log('Title:', this.postForm.value.title);
-    console.log('Body:', this.postForm.value.body);
+    this.apiService
+      .createPost({
+        title: this.postForm.value.title,
+        body: this.postForm.value.body,
+        userId: 11,
+      })
+      .subscribe((post) => console.log(post));
     this.modalService.closeModal();
   }
 }

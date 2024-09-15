@@ -40,7 +40,7 @@
       formControlName="body"
       [value]="post ? post.body : ''"
     ></textarea>
-    <button class="submit" type="submit" [disabled]="postForm.invalid">
+    <button class="submit" type="submit" [disabled]="!post && postForm.invalid">
       {{ post ? "Update Post" : "Post" }}
     </button>
   </form>

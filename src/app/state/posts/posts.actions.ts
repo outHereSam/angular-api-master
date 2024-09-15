@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { Post } from '../../interfaces/IPost';
+import { PostData } from '../../interfaces/IPostData';
 
 // Load Actions
 export const loadPosts = createAction('[Post List] Load Posts');
