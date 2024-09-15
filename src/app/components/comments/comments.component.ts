@@ -21,6 +21,5 @@ export class CommentsComponent {
 
   ngOnInit() {
     this.comments$ = this.apiService.getCommentsByPostId(this.postId);
-    this.comments$.subscribe((comments) => console.log(comments));
   }
 }

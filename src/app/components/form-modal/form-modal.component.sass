@@ -1,0 +1,74 @@
+@use '../../../stylesheets/_mixins' as mixins
+@use '../../../stylesheets/_variables' as variables
+
+.overlay
+    position: fixed
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    background-color: black
+    opacity: 0.5
+    z-index: 5
+
+.form-modal
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    z-index: 10
+    background-color: white
+    padding: 32px
+    border-radius: 8px
+    // width: 450px
+    min-width: 327px
+
+    @media (min-width 650px)
+        padding: 48px
+
+    .top
+        @include mixins.flex($flex-direction:'row', $gap: 0, $horizontal-spacing: true)
+        margin-bottom: 20px
+
+        .close
+            display: flex
+            justify-content: center
+            align-items: center
+            width: 42px
+            height: 42px
+            border: none
+            background-color: variables.$gray-light
+            cursor: pointer
+            border-radius: variables.$round-border
+
+            &:hover
+                background-color: variables.$red-hover
+        
+
+    h1
+        font-size: 20px
+
+    form
+        @include mixins.flex($flex-direction: 'column', $gap: 20px, $horizontal-spacing: false)
+        
+        input, textarea
+            font: variables.$font-stack
+            border: none
+            background-color: variables.$gray-light
+            padding: 15px
+            border-radius: variables.$card-border
+            
+            &:focus
+                outline: solid 1px variables.$purple-accent
+
+        .submit
+            padding: 10px 15px
+            align-self: flex-end
+            cursor: pointer
+            border: none
+            background-color: variables.$purple-accent
+            color: white
+            border-radius: variables.$round-border
+            
+            &:hover
+                background-color: variables.$purple-hover

@@ -32,6 +32,5 @@ export class PostDetailComponent {
         return this.apiService.getPostById(this.postId);
       })
     );
-    this.post$.subscribe((post) => console.log(post));
   }
 }

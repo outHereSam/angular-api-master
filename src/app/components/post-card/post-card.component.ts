@@ -22,7 +22,6 @@ export class PostCardComponent {
 
   ngOnInit() {
     this.post$ = this.store.select(selectPostById(this.postId));
-    this.post$.subscribe((post) => console.log(post));
   }
 
   deletePost(id: number) {}
