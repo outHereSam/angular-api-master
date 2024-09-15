@@ -6,6 +6,7 @@ import {
   Observable,
   retry,
   switchMap,
+  tap,
   throwError,
 } from 'rxjs';
 import { Post } from '../interfaces/IPost';
@@ -47,7 +48,10 @@ export class ApiService {
   }
 
   deletePost(id: number) {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+    return this.http.delete(`${this.apiUrl}/${id}`).pipe(
+      tap(() => console.log(`Post with id: ${id} deleted`)),
+      catchError(this.handleError)
+    );
   }
 
   private handleError(error: HttpErrorResponse) {
