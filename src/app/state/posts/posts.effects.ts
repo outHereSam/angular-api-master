@@ -3,7 +3,8 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { ApiService } from '../../services/api.service';
 import { Store } from '@ngrx/store';
 import * as PostActions from './posts.actions';
-import { catchError, map, mergeMap, of } from 'rxjs';
+import { catchError, forkJoin, map, mergeMap, of } from 'rxjs';
+import { Post } from '../../interfaces/IPost';
 
 @Injectable()
 export class PostEffects {
@@ -18,8 +19,11 @@ export class PostEffects {
       ofType(PostActions.loadPosts),
       mergeMap(() => {
         return this.apiService.getPosts().pipe(
-          map((posts) => {
-            return PostActions.loadPostsSuccess({ posts });
+          mergeMap((posts: Post[]) =>
+            forkJoin(posts.map((post) => this.apiService.getPostById(post.id)))
+          ),
+          map((postsWithComments: Post[]) => {
+            return PostActions.loadPostsSuccess({ posts: postsWithComments });
           })
         );
       }),

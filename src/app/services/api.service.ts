@@ -19,13 +19,13 @@ export class ApiService {
     return this.http.get<Comment[]>(`${this.apiUrl}/${id}/comments`);
   }
 
-  getPostById(id: string | null) {
+  getPostById(id: number): Observable<Post> {
     return this.http
-      .get(`${this.apiUrl}/${id}`)
+      .get<Post>(`${this.apiUrl}/${id}`)
       .pipe(
         switchMap((post) =>
-          this.getCommentsByPostId(Number(id)).pipe(
-            map((comments) => ({ ...post, comments }))
+          this.getCommentsByPostId(id).pipe(
+            map((comments: Comment[]) => ({ ...post, comments }))
           )
         )
       );

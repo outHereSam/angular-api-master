@@ -1,0 +1,12 @@
+@use '../../../stylesheets/_variables' as variables
+@use '../../../stylesheets/_mixins' as mixins
+
+.navigation
+    margin: 0 0 40px 0
+    button
+        border: none
+        background: none
+        appearance: none
+        cursor: pointer
+        @include mixins.flex($flex-direction: 'row', $gap:10px, $horizontal-spacing: true)
+        

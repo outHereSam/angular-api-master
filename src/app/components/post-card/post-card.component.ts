@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Post } from '../../interfaces/IPost';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { selectPostById } from '../../state/posts/posts.selectors';
@@ -14,7 +14,6 @@ import { selectPostById } from '../../state/posts/posts.selectors';
 })
 export class PostCardComponent {
   @Input() postId: number = 0;
-  commentCount: number | undefined = 0;
   post$: Observable<Post | undefined>;
 
   constructor(private store: Store) {
@@ -23,6 +22,7 @@ export class PostCardComponent {
 
   ngOnInit() {
     this.post$ = this.store.select(selectPostById(this.postId));
+    this.post$.subscribe((post) => console.log(post));
   }
 
   deletePost(id: number) {}

@@ -11,11 +11,12 @@ import {
   selectPostError,
   selectPostLoading,
 } from '../../state/posts/posts.selectors';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-post-list',
   standalone: true,
-  imports: [AsyncPipe, RouterLink, PostCardComponent],
+  imports: [AsyncPipe, RouterLink, PostCardComponent, HeaderComponent],
   templateUrl: './post-list.component.html',
   styleUrl: './post-list.component.sass',
 })
