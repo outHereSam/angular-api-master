@@ -1,0 +1,35 @@
+@use '../../../stylesheets/_variables' as variables
+@use '../../../stylesheets/_mixins' as mixins
+@use '../../../stylesheets/_functions' as functions
+
+.container
+    margin: 20px 0 
+    background-color: white
+    padding: 30px
+    border-radius: variables.$card-border
+    box-shadow: variables.$box-shadow
+
+    .title
+        font-size: functions.px-to-rem(14)
+        font-weight: 500
+        color: variables.$text-secondary
+
+    .comments
+        // margin: 20px 0
+
+        .comment
+            padding: 30px 0
+            border-bottom: solid 1px variables.$gray-light
+
+            &:last-child
+                border: none
+
+            .email, .name
+                font-size: functions.px-to-rem(16)
+                font-weight: 500
+                margin-bottom: 15px
+            
+            .comment-body
+                color: variables.$text-secondary
+                line-height: 1.4
+

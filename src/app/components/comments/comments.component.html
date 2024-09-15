@@ -1,0 +1,14 @@
+<div class="container">
+  <h4 class="title">Comments</h4>
+
+  <div class="comments">
+    @if(comments$ | async ) { @for (comment of (comments$ | async); track
+    comment.id) {
+    <div class="comment">
+      <h3 class="email">{{ comment.email }}</h3>
+      <h3 class="name">{{ comment.name }}</h3>
+      <p class="comment-body">{{ comment.body }}</p>
+    </div>
+    } }
+  </div>
+</div>
