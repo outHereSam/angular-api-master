@@ -1,0 +1,33 @@
+@use '../../../stylesheets/_variables' as variables
+@use '../../../stylesheets/_mixins' as mixins
+
+.options
+    @include mixins.flex($flex-direction:'row', $gap: 10px, $horizontal-spacing: false)
+    margin: 0 0 30px 0
+    background-color: white
+    padding: 20px
+    border-radius: variables.$round-border
+    box-shadow: variables.$box-shadow
+
+    .edit
+        @include mixins.flex($flex-direction: 'row', $gap: 8px, $horizontal-spacing: true)
+        border: none
+        background-color: variables.$gray-light
+        color: variables.$text-secondary
+        padding: 8px 12px
+        border-radius: variables.$round-border
+        cursor: pointer
+        transition: 0.2s ease-in
+    
+    .delete
+            @include mixins.flex($flex-direction: 'row', $gap: 8px, $horizontal-spacing: true)
+            border: none
+            background-color: variables.$gray-light
+            color: variables.$red
+            padding: 8px 12px
+            border-radius: variables.$round-border
+            cursor: pointer
+            transition: 0.2s ease-in
+
+            &:hover
+                background-color: variables.$red-hover

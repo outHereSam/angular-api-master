@@ -16,6 +16,8 @@
     </button>
   </div>
 
+  <app-options />
+
   @if (post$ | async) {
   <app-post-card [postId]="postId" />
   }

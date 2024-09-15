@@ -6,11 +6,18 @@ import { ApiService } from '../../services/api.service';
 import { PostCardComponent } from '../../components/post-card/post-card.component';
 import { AsyncPipe } from '@angular/common';
 import { CommentsComponent } from '../../components/comments/comments.component';
+import { OptionsComponent } from '../../components/options/options.component';
 
 @Component({
   selector: 'app-post-detail',
   standalone: true,
-  imports: [PostCardComponent, RouterLink, AsyncPipe, CommentsComponent],
+  imports: [
+    PostCardComponent,
+    RouterLink,
+    AsyncPipe,
+    CommentsComponent,
+    OptionsComponent,
+  ],
   templateUrl: './post-detail.component.html',
   styleUrl: './post-detail.component.sass',
 })
