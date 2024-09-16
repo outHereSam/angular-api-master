@@ -10,6 +10,8 @@ import { Post } from '../../interfaces/IPost';
 import { ApiService } from '../../services/api.service';
 import { Store } from '@ngrx/store';
 import { addPost } from '../../state/posts/posts.actions';
+import { PostData } from '../../interfaces/IPostData';
+import { map, tap } from 'rxjs';
 
 @Component({
   selector: 'app-form-modal',
@@ -50,11 +52,23 @@ export class FormModalComponent {
   handleSubmit() {
     this.apiService
       .createPost({
+        id: this.post?.id || 0,
         title: this.postForm.value.title,
         body: this.postForm.value.body,
         userId: 11,
       })
-      .subscribe((post) => console.log(post));
+      .subscribe((post: any) => {
+        const newPost = {
+          ...post,
+          id: post.id,
+          userId: 11,
+          title: this.postForm.value.title,
+          body: this.postForm.value.body,
+          comments: [],
+        };
+        this.store.dispatch(addPost({ post: newPost }));
+      });
+    this.store.dispatch(addPost({ post: { ...this.postForm.value } }));
     this.modalService.closeModal();
   }
 }

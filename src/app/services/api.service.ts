@@ -42,7 +42,7 @@ export class ApiService {
     );
   }
 
-  createPost(postData: PostData) {
+  createPost(postData: Post) {
     return this.http
       .post(this.apiUrl, postData)
       .pipe(catchError(this.handleError));

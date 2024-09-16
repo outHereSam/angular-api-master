@@ -9,7 +9,7 @@ export interface PostState extends EntityState<Post> {
 
 export const postAdapter: EntityAdapter<Post> = createEntityAdapter<Post>({
   selectId: (post: Post) => post.id,
-  sortComparer: false,
+  sortComparer: (a: Post, b: Post) => b.id - a.id,
 });
 
 export const initialPostState: PostState = postAdapter.getInitialState({

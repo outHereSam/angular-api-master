@@ -9,6 +9,7 @@ import { CommentsComponent } from '../../components/comments/comments.component'
 import { FormModalComponent } from '../../components/form-modal/form-modal.component';
 import { ModalService } from '../../services/modal.service';
 import { deletePost } from '../../state/posts/posts.actions';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-post-detail',
@@ -29,7 +30,11 @@ export class PostDetailComponent {
   post$: Observable<Post>;
   postId: number = 0;
 
-  constructor(private route: ActivatedRoute, private router: Router) {
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private store: Store
+  ) {
     this.post$ = this.route.paramMap.pipe(
       switchMap((params) => {
         this.postId = Number(params.get('id'));
@@ -40,6 +45,7 @@ export class PostDetailComponent {
 
   deletePost(id: number) {
     this.apiService.deletePost(id);
+    this.store.dispatch(deletePost({ id: id }));
     this.router.navigate(['']);
   }
 }
