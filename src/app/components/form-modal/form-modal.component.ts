@@ -24,7 +24,7 @@ export class FormModalComponent {
   modalService: ModalService = inject(ModalService);
   apiService: ApiService = inject(ApiService);
 
-  @Input() post: Post | null = null;
+  @Input() post: Post | null | undefined;
 
   postForm: FormGroup;
 

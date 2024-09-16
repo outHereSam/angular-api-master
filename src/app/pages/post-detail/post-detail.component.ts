@@ -10,6 +10,7 @@ import { FormModalComponent } from '../../components/form-modal/form-modal.compo
 import { ModalService } from '../../services/modal.service';
 import { deletePost } from '../../state/posts/posts.actions';
 import { Store } from '@ngrx/store';
+import { selectPostById } from '../../state/posts/posts.selectors';
 
 @Component({
   selector: 'app-post-detail',
@@ -27,7 +28,7 @@ import { Store } from '@ngrx/store';
 export class PostDetailComponent {
   modalService: ModalService = inject(ModalService);
   apiService: ApiService = inject(ApiService);
-  post$: Observable<Post>;
+  post$: Observable<Post | undefined>;
   postId: number = 0;
 
   constructor(
@@ -38,7 +39,8 @@ export class PostDetailComponent {
     this.post$ = this.route.paramMap.pipe(
       switchMap((params) => {
         this.postId = Number(params.get('id'));
-        return this.apiService.getPostById(this.postId);
+        return this.store.select(selectPostById(this.postId));
+        // return this.apiService.getPostById(this.postId);
       })
     );
   }
